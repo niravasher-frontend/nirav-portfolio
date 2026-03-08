@@ -257,6 +257,25 @@ const styles = `
   }
   .btn-resume:hover { background: #3fffc9; transform: translateY(-1px); }
 
+  /* NAV HAMBURGER */
+  .nav-hamburger {
+    display: none; background: none; border: none; color: var(--text);
+    cursor: pointer; padding: 4px;
+  }
+  @media (max-width: 700px) {
+    .nav { padding: 0 20px; }
+    .nav-hamburger { display: flex; align-items: center; }
+    .nav-links {
+      display: none; position: absolute; top: 56px; left: 0; right: 0;
+      flex-direction: column; gap: 0; background: rgba(10,14,19,0.97);
+      backdrop-filter: blur(12px); border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+    }
+    .nav-links.open { display: flex; }
+    .nav-link { padding: 12px 24px; width: 100%; text-align: left; }
+    .btn-resume { margin: 8px 24px 4px; width: calc(100% - 48px); justify-content: center; }
+  }
+
   /* HOME */
   .home {
     min-height: 100vh; display: flex; align-items: center; justify-content: center;
@@ -271,25 +290,25 @@ const styles = `
   .home-glow-left  { left: -200px;  top: 50%; animation-delay: 0s; }
   .home-glow-right { right: -200px; top: 50%; animation-delay: 3s; }
 
-  .home-content { text-align: center; position: relative; z-index: 1; max-width: 680px; padding: 0 24px; }
+  .home-content { text-align: center; position: relative; z-index: 1; max-width: 780px; padding: 0 24px; }
 
   /* staggered hero elements */
   .home-sup  {
-    font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--accent);
-    margin-bottom: 16px; letter-spacing: 0.05em;
+    font-family: 'IBM Plex Mono', monospace; font-size: clamp(13px, 1.2vw, 17px); color: var(--accent);
+    margin-bottom: 20px; letter-spacing: 0.05em;
     animation: fadeUp 0.65s 0.2s cubic-bezier(0.22,1,0.36,1) both;
   }
   .home-name {
-    font-size: clamp(44px, 7vw, 72px); font-weight: 700; line-height: 1.1; margin-bottom: 12px;
+    font-size: clamp(44px, 7vw, 80px); font-weight: 700; line-height: 1.1; margin-bottom: 16px;
     animation: fadeUp 0.65s 0.35s cubic-bezier(0.22,1,0.36,1) both;
   }
   .home-name span { color: var(--accent); }
   .home-role {
-    font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 20px; letter-spacing: 0.02em;
+    font-size: clamp(18px, 2vw, 24px); font-weight: 600; color: var(--text); margin-bottom: 24px; letter-spacing: 0.02em;
     animation: fadeUp 0.65s 0.48s cubic-bezier(0.22,1,0.36,1) both;
   }
   .home-bio {
-    font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 32px;
+    font-size: clamp(15px, 1.3vw, 18px); color: var(--muted); line-height: 1.75; margin-bottom: 40px;
     animation: fadeUp 0.65s 0.6s cubic-bezier(0.22,1,0.36,1) both;
   }
   .home-socials {
@@ -334,6 +353,9 @@ const styles = `
   .page-title { font-size: clamp(32px, 5vw, 52px); font-weight: 700; margin-bottom: 12px; }
   .page-title span { color: var(--accent); }
   .page-sub { font-size: 15px; color: var(--muted); }
+  @media (max-width: 700px) {
+    .page-header { padding: 80px 20px 28px; }
+  }
 
   /* EXPERIENCE */
   .exp-list { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; display: flex; flex-direction: column; gap: 24px; }
@@ -341,6 +363,10 @@ const styles = `
     background: var(--card); border: 1px solid var(--border);
     border-radius: 16px; padding: 32px;
     transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  }
+  @media (max-width: 700px) {
+    .exp-list { padding: 0 12px 48px; gap: 16px; }
+    .exp-card { padding: 20px 16px; border-radius: 12px; }
   }
   .exp-card:hover { border-color: rgba(45,232,181,0.22); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
   .exp-header { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
@@ -440,16 +466,27 @@ function SocialBtn({ icon, href }) {
 }
 
 function Nav({ page, setPage }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = (p) => { setPage(p); setMenuOpen(false); };
+
   return (
     <nav className="nav">
-      <span className="nav-logo" onClick={() => setPage("home")}>Nirav Asher</span>
-      <div className="nav-links">
+      <span className="nav-logo" onClick={() => navigate("home")}>Nirav Asher</span>
+      <button className="nav-hamburger" onClick={() => setMenuOpen((o) => !o)} aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          {menuOpen
+            ? <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></>
+            : <><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></>
+          }
+        </svg>
+      </button>
+      <div className={`nav-links${menuOpen ? " open" : ""}`}>
         {["home", "experience", "skills"].map((p) => (
-          <button key={p} className={`nav-link${page === p ? " active" : ""}`} onClick={() => setPage(p)}>
+          <button key={p} className={`nav-link${page === p ? " active" : ""}`} onClick={() => navigate(p)}>
             {p.charAt(0).toUpperCase() + p.slice(1)}
           </button>
         ))}
-        <button className="btn-resume" onClick={downloadResume}><DownloadIcon /> Resume</button>
+        <button className="btn-resume" onClick={() => { downloadResume(); setMenuOpen(false); }}><DownloadIcon /> Resume</button>
       </div>
     </nav>
   );
