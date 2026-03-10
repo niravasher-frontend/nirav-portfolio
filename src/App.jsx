@@ -19,7 +19,7 @@ function useFadeIn(options = {}) {
 
 
 // ── Resume Download ────────────────────────────────────────────────────────
-const RESUME_URL = "https://drive.google.com/uc?export=download&id=1wIs4EuAod7kXwF5rlSQ5TmUdr4cXMXN-";
+const RESUME_URL = "https://drive.google.com/uc?export=download&id=1PtK0cZ0htTb5heKnvQaDND0wgJwGvXWX";
 
 function downloadResume() {
   const link = document.createElement("a");
@@ -109,15 +109,11 @@ const experiences = [
     location: "Remote",
     tags: ["React", "SSR/CSR", "Performance Optimization", "AI Tools", "Design Systems"],
     bullets: [
-      "Developing conversion-focused React applications used by millions of telecom customers.",
-      "Creating new digital customer journeys (such as contract prolongation) with a strong focus on performance, scalability, and user experience.",
-      "Created a comprehensive internal knowledge base of the codebase, enabling AI-assisted development and improving developer productivity.",
+      "Built Scottie Engine, a Python based MCP server that provides LLMs with real-time ODS component documentation, design tokens and Figma-to-code mappings for React enabling automated, design system compliant UI implementation",
+      "Reduced initial server start time by 70% and cut recompile time from ~20s to ~3s significantly accelerating local development and feature delivery by removing bottleneck packages, upgrading npm and optimizing ssr/csr architecture",
+      "Improved web performance and UX by implementing API caching, fixing HMR instability, asynchronizing tasks reducing the page load time from ~6s → ~3s and increasing Lighthouse scores across key e-commerce pages by up to 25%",
       "Improved Lighthouse performance scores through frontend optimizations including bundle optimization, lazy loading, and efficient rendering strategies.",
-      "Optimized the SSR/CSR architecture, simplifying rendering flows and significantly reducing development complexity and iteration time.",
-      "Reduced technical debt by resolving HMR issues, standardizing code quality through ESLint and Prettier cleanup, and improving overall maintainability of the codebase.",
-      "Building an AI-powered developer enablement system (Scotty Engine) that allows coding assistants to access design system documentation, search components semantically, resolve design tokens, and automate Figma-to-code workflows.",
-      "Creating and maintaining a large internal knowledge base of the codebase to improve developer productivity and AI-assisted development.",
-      "Working on design system tooling and automation to streamline the design-to-development workflow across multiple platforms.",
+      "Led UI improvements for customer retention journeys and peak load journeys, decreasing interaction latency by 4–5 seconds and contributing to ~150K customers retained on the platform",
     ],
     impact: "Improved developer productivity, accelerated feature delivery, and enhanced the digital experience for telecom customers.",
   },
@@ -128,15 +124,10 @@ const experiences = [
     location: "Bangalore, India",
     tags: ["React", "Dashboard Development", "Authentication", "Analytics", "UI Architecture"],
     bullets: [
-      "Built the Creator Dashboard (creator.wishlink.com) from scratch, enabling creators to manage storefronts, content, and monetization workflows in a single platform.",
-      "Implemented Instagram, YouTube, and manual email authentication, allowing creators to securely sign up, log in, and connect their social accounts to the platform.",
-      "Developed scalable UI architecture using the Wishlink UI component library, including theme implementation to support customizable creator storefronts.",
-      "Built the complete self-serve (DIY) creator workflow enabling creators to independently add and manage posts, product collections, and individual products.",
-      "Implemented pagination, filtering, and sorting for large datasets across posts, collections, and products to improve usability and performance.",
-      "Developed the Creator Analytics Dashboard UI, allowing creators to track earnings, campaign performance, and brand collaborations with advanced date and brand-based filters.",
-      "Built the Rewards System (frontend with backend integration) enabling brands to launch reward campaigns and automatically distribute incentives to high-performing creators.",
-      "Contributed to Wishlink Engage, enabling creators to automatically send product links to users who comment specific keywords on Instagram posts, improving engagement and conversions.",
-      "Integrated Lead Management Software, enabling users to create, bulk update, and track leads directly within the creator dashboard.",
+      "As the Founding Engineer responsible for building the Creator Dashboard from the ground up, enabling onboarding of 400K+ creators who link their social media content to Wishlink and earn commissions through product referrals",
+      "Developed a commission-driven commerce dashboard in partnership with Pure Origin and Meesho, enabling re-sellers to promote and sell products across Tier-2 and Tier-3 cities in India, contributing ₹2Cr+ in revenue",
+      "Led the creation of the customer support workflow by integrating Zendesk and CRM systems, enabling the support team to handle 100+ daily customer queries while ensuring seamless data synchronization pipelines",
+      "Designed and built a reusable Wishlink UI component library, standardizing shared frontend components and improving development velocity and consistency across the organization",
     ],
     impact: "Empowered thousands of creators to monetize their content and manage their digital storefronts efficiently.",
   },
@@ -147,10 +138,10 @@ const experiences = [
     location: "Remote",
     tags: ["React", "Third-party Integrations", "SEO", "Event Management", "Performance"],
     bullets: [
-      "As part of the frontend development team, worked to build various apps including studio for customers, custom page builder, branding panel, integration of several third party apps like marketo, hubspot, google analytics, drift and salesforce.",
-      "Built bulk and manual registration panel for customers to register their attendees.",
-      "Enhanced performance of the app by upgrading the frontend architecture leading to improved search engine optimisation.",
-      "Allowed users to create breakout rooms, bulk registration of users through csv file, toast notifications on API calls.",
+      "Developed the admin panel from the ground up for all the 100+ enterprise customers to configure, manage and fully customize their event experiences including branding and event page configurations",
+      "Integrated multiple 3rd party marketing and analytics platforms (Marketo, HubSpot, Google Analytics, Drift and Salesforce) enabling customers to track event performance, marketing pipelines and improve lead conversion",
+      "Built a flexible registration page builder allowing customers to create fully customized event pages with configurable sections such as header, landing content, event details, booths, breakout sessions, and footer components",
+      "Implemented key event management features including breakout room creation, bulk and manual attendee registration, and improved overall product usability by adding validations across forms and inputs, significantly enhancing user experience and reliability",
     ],
     impact: "Enhanced event management capabilities and improved platform performance for enterprise customers.",
   },
@@ -509,9 +500,8 @@ function HomePage({ setPage }) {
           performance engineering, and developer productivity tooling
         </p>
         <div className="home-socials">
-          <SocialBtn icon={<GithubIcon />} href="#" />
-          <SocialBtn icon={<LinkedinIcon />} href="#" />
-          <SocialBtn icon={<MailIcon />} href="mailto:nirav@example.com" />
+          <SocialBtn icon={<GithubIcon />} href="https://github.com/niravasher" />
+          <SocialBtn icon={<LinkedinIcon />} href="https://www.linkedin.com/in/nirav-asher/" />
         </div>
         <div className="home-ctas">
           <button className="btn-primary" onClick={downloadResume}><DownloadIcon /> Download Resume</button>
